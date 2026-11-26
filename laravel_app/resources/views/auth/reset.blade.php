@@ -1,0 +1,3 @@
+@extends('layouts.app')
+@section('title', 'Đặt lại mật khẩu')
+@section('content')<section class="auth-card panel"><h1>Đặt lại mật khẩu</h1><form method="post" action="{{ route('password.update') }}" class="stack">@csrf<input type="hidden" name="token" value="{{ $token }}"><label>Email<input name="email" type="email" value="{{ old('email', $email) }}" required autocomplete="email"></label><label>Mật khẩu mới<input type="password" name="password" minlength="10" required autocomplete="new-password"></label><label>Nhập lại mật khẩu<input type="password" name="password_confirmation" minlength="10" required autocomplete="new-password"></label><button class="button">Lưu mật khẩu</button></form></section>@endsection

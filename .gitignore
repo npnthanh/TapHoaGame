@@ -1,0 +1,23 @@
+# Deployment packages, SQL dumps & credentials
+/deploy/
+*.sql
+*.sql.gz
+*.zip
+*.sha256
+ACCESS.txt
+.env
+.env.*
+!.env.example
+
+# Public runtime & uploaded files (preserve .htaccess)
+/public_html/uploads/*
+!/public_html/uploads/.htaccess
+/public_html/hot
+/public_html/storage
+
+# OS & IDE files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kiểm tra custom select</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/assets/app.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/assets/custom-select.css">
+    <script src="http://127.0.0.1:8000/assets/custom-select.js" defer></script>
+</head>
+<body>
+<main class="panel" style="max-width:480px;margin:24px auto">
+    <h1>Kiểm tra dropdown</h1>
+    <form id="fixture" class="stack">
+        <label>Vai trò thử nghiệm<select name="role" required><option value="" disabled selected>Chọn vai trò</option><option value="customer">Khách hàng</option><option value="staff">Nhân viên</option><option value="locked" disabled>Quyền bị khóa</option></select></label>
+        <label>Sản phẩm thử nghiệm<select name="product"><option value="1">ELDEN RING</option><option value="2">Cyberpunk 2077</option><option value="3">Baldur's Gate 3</option><option value="4">Red Dead Redemption 2</option><option value="5">Starfield</option><option value="6">FC 24</option><option value="7">Windows 11</option><option value="8">Steam Wallet</option><option value="9">Portal 2</option><option value="10">Hades</option></select></label>
+        <label>Trường đang khóa<select name="disabled" disabled><option value="locked">Không thể thay đổi</option></select></label>
+        <label>Nhãn văn bản<select name="text"><option value="safe">&lt;script&gt; chỉ là văn bản &amp; ký tự</option><option value="other">Bình thường</option></select></label>
+        <div><button type="submit" class="button">Gửi form thử</button> <button type="reset" class="button secondary">Reset</button></div>
+    </form>
+    <p>Kết quả: <output id="result" aria-live="polite">Chưa gửi</output></p>
+    <p>Sự kiện change: <output id="changes">0</output></p>
+</main>
+<script>
+    const form = document.querySelector('#fixture');
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        document.querySelector('#result').textContent = JSON.stringify(Object.fromEntries(new FormData(form)));
+    });
+    form.addEventListener('change', () => {
+        const output = document.querySelector('#changes');
+        output.textContent = Number(output.textContent) + 1;
+    });
+    form.addEventListener('reset', () => { document.querySelector('#result').textContent = 'Chưa gửi'; });
+</script>
+</body>
+</html>

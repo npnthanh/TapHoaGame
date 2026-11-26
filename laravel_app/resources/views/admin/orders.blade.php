@@ -1,0 +1,3 @@
+@extends('layouts.admin')
+@section('title', 'Quản lý đơn hàng')
+@section('content')@include('admin.nav')<div class="page-heading"><h1>Đơn hàng</h1></div><form class="filter-bar"><input aria-label="Mã đơn hoặc email" name="q" value="{{ request('q') }}" placeholder="Mã đơn hoặc email khách hàng"><select aria-label="Trạng thái" name="status"><option value="">Tất cả trạng thái</option>@foreach(['completed' => 'Hoàn thành', 'pending' => 'Đang chờ', 'failed' => 'Thất bại', 'refunded' => 'Đã hoàn tiền'] as $key => $label)<option value="{{ $key }}" @selected(request('status') === $key)>{{ $label }}</option>@endforeach</select><button class="button small">Tra cứu</button></form>@include('admin.order-table'){{ $orders->links('pagination.simple') }}@endsection
